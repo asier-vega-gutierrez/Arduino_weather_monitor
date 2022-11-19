@@ -4,7 +4,7 @@ services:
   prometheus:
     image: prom/prometheus:v2.30.3
     ports:
-      - 9000:9090
+      - 9090:9090
     volumes:
       - ./prometheus:/etc/prometheus
       - prometheus-data:/prometheus
@@ -30,6 +30,13 @@ services:
       - "./alertmanager:/config"
       - alertmanager-data:/data
     command: --config.file=/config/alertmanager.yml --log.level=debug 
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    container_name: monitoring_node_exporter
+    restart: unless-stopped
+    expose:
+      - 9100
 
 volumes:
   prometheus-data:
