@@ -8,16 +8,15 @@ metadata:
 data:
   prometheus.rules: |-
     groups:
-    - name: devopscube alert
+    - name: Infrastructure alerts
       rules:
-      - alert: InstanceDown
-        expr: up == 0
+      - alert: High Pod Memory
+        expr: sum(container_memory_usage_bytes) > 1
         for: 1m
-        annotations:
-          title: 'Instance {{ $labels.instance }} down'
-          description: '{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute.'
         labels:
-            severity: critical
+          severity: page
+        annotations:
+          summary: High Memory Usage
 
   prometheus.yml: |-
     global:
