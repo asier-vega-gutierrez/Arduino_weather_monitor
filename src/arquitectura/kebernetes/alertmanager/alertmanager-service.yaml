@@ -4,7 +4,6 @@ metadata:
   name: alertmanager
   namespace: monitoring
   labels:
-    k8s-app: alertmanager
     app.component: prometheus
     app.name: alertmanager
 spec:
