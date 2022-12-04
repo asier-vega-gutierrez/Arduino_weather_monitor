@@ -19,8 +19,8 @@ data:
     receivers:
     - name: email_alert
       email_configs:
-      - to: 'to@gmail.com'
-        from: 'from@gmail.com'
+      - to: 'yosoifalso@gmail.com'
+        from: 'yosoifalso@gmail.com'
         smarthost: 'smtp.gmail.com:587'
-        auth_username: 'auth'
-        auth_password: 'password'
+        auth_username: 'falso yosoi'
+        auth_password: 'Falsoyosoi14'

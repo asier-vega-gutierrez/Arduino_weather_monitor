@@ -20,7 +20,7 @@ spec:
   template:
     metadata:
       labels:
-         k8s-app: alertmanager
+         app: alertmanager
          app.component: prometheus
          app.name: alertmanager
     spec:
@@ -60,3 +60,4 @@ spec:
 
         - name: alertmanager-data
           emptyDir: {}
+        

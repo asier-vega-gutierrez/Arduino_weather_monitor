@@ -10,9 +10,8 @@ data:
     groups:
     - name: Estacion meteorologica
       rules:
-
       - alert: Temperatura muy baja
-        expr: valor_temperatura_1 < 0
+        expr: valor_criptomonedas > 3
         for: 1m
         labels:
           severity: page
@@ -35,7 +34,7 @@ data:
       - job_name: my-application
         honor_labels: true
         static_configs:
-        - targets: ['python-application:5000']
+        - targets: ['flask:5000']
 
       
 

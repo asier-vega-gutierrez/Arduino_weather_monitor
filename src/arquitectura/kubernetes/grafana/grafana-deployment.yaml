@@ -33,9 +33,6 @@ spec:
             - name: dashboardproviders
               mountPath: "/etc/grafana/provisioning/dashboards/"
           ports:
-            - name: service
-              containerPort: 80
-              protocol: TCP
             - name: grafana
               containerPort: 3000
               protocol: TCP
