@@ -19,14 +19,14 @@ data:
     plugins = /var/lib/grafana/plugins
     [smtp]
     enabled = true
-    host = smtp_host:port
-    user = <username>
+    host = smtp.gmail.com:587
+    user = yosoifalso@gmail.com
     # If the password contains # or ; you have to wrap it with triple quotes. Ex """#password;"""
-    password = <password>
+    password = kquvuqgftbnrvidp
     # If https enabled
     cert_file =
     key_file =
-    skip_verify = false
-    from_address = admin@grafana.localhost
+    skip_verify = true
+    from_address = grafana.monitoringalert@gmail.com
     from_name = Grafana
     ehlo_identity =

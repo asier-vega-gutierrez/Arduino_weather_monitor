@@ -6,18 +6,6 @@ metadata:
   labels:
     name: prometheus-server-conf
 data:
-  prometheus.rules: |-
-    groups:
-    - name: Estacion meteorologica
-      rules:
-      - alert: Temperatura muy baja
-        expr: valor_criptomonedas > 3
-        for: 1m
-        labels:
-          severity: page
-        annotations:
-          summary: Temperatura muy baja
-
   prometheus.yml: |-
     global:
       scrape_interval: 5s
