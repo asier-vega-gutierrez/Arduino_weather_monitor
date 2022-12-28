@@ -31,13 +31,14 @@ def hello():
 @app.route("/metrics")
 def requests():
     while True:
-        graphs['temp_1'].set(random.randint(-5, 50))
-        graphs['press_1'].set(random.randint(885, 1077))
-        graphs['hum_1'].set(random.randint(0,100))
-        graphs['w_speed_1'].set(random.randint(0, 40))
-        graphs['w_dir_1'].set(random.randint(0,360))
-        graphs['rain_1'].set(random.randint(0, 3))
-        graphs['light_1'].set(random.randint(0,100))
+        for n in indice:
+            graphs['temp_'+str(n)].set(random.randint(46, 50))
+            graphs['press_'+str(n)].set(random.randint(885, 1077))
+            graphs['hum_'+str(n)].set(random.randint(0,100))
+            graphs['w_speed_'+str(n)].set(random.randint(0, 40))
+            graphs['w_dir_'+str(n)].set(random.randint(0,360))
+            graphs['rain_'+str(n)].set(random.randint(0, 3))
+            graphs['light_'+str(n)].set(random.randint(0,100))
         res = []
         for k,v in graphs.items():
             res.append(prometheus_client.generate_latest(v))

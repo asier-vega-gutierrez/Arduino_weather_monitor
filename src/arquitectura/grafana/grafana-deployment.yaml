@@ -32,6 +32,8 @@ spec:
               mountPath: "/etc/grafana/provisioning/datasources/"
             - name: dashboardproviders
               mountPath: "/etc/grafana/provisioning/dashboards/"
+            - name: notifiers
+              mountPath: "/etc/grafana/provisioning/notifiers/"
           ports:
             - name: grafana
               containerPort: 3000
@@ -49,3 +51,6 @@ spec:
         - name: dashboards
           configMap:
             name: dashboards
+        - name: notifiers
+          configMap:
+            name: grafana-notifier
