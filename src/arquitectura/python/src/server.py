@@ -1,4 +1,5 @@
-from flask import Response, Flask, request
+from flask import Response, Flask
+import requests
 import prometheus_client
 from prometheus_client.core import CollectorRegistry
 from prometheus_client import Summary, Counter, Histogram, Gauge
@@ -26,6 +27,12 @@ for n in indice:
 @app.route("/", methods=['GET'])
 def hello():
     return "Hello World!" 
+
+@app.route("/prueba")
+def get_data():
+    res = requests.get('http://172.16.30.2/').content
+    parsed = res.json()
+    return parsed
 
 #Get Metrics
 @app.route("/metrics")
