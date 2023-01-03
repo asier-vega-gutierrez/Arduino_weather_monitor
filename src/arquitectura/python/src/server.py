@@ -1,5 +1,7 @@
 from flask import Response, Flask
 import requests
+from requests import get
+import json
 import prometheus_client
 from prometheus_client.core import CollectorRegistry
 from prometheus_client import Summary, Counter, Histogram, Gauge
@@ -30,9 +32,9 @@ def hello():
 
 @app.route("/prueba")
 def get_data():
-    res = requests.get('http://172.16.30.2/').content
-    parsed = res.json()
-    return parsed
+    response = get('https://www.google.es/').content
+    jsonResponse = json.loads(response.decode('latin-1'))#utf-8
+    return dict
 
 #Get Metrics
 @app.route("/metrics")
