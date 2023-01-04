@@ -41,7 +41,7 @@ def get_data():
 def requests():
     while True:
         for n in indice:
-            graphs['temp_'+str(n)].set(random.randint(46, 50))
+            graphs['temp_'+str(n)].set(random.randint(10, 45))
             graphs['press_'+str(n)].set(random.randint(885, 1077))
             graphs['hum_'+str(n)].set(random.randint(0,100))
             graphs['w_speed_'+str(n)].set(random.randint(0, 40))

@@ -67,7 +67,8 @@
                 "value": 50
               }
             ]
-          }
+          },
+          "unit": "ºC"
         },
         "overrides": []
       },
@@ -449,7 +450,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "L / m²"
         },
         "overrides": []
       },
@@ -748,7 +749,8 @@
                 "value": 100
               }
             ]
-          }
+          },
+          "unit": "lux"
         },
         "overrides": []
       },
@@ -1267,7 +1269,8 @@
                 "value": 50
               }
             ]
-          }
+          },
+          "unit": "ºC"
         },
         "overrides": []
       },
@@ -1648,7 +1651,7 @@
               }
             ]
           },
-          "unit": "none"
+          "unit": "L / m²"
         },
         "overrides": []
       },
@@ -1947,7 +1950,8 @@
                 "value": 100
               }
             ]
-          }
+          },
+          "unit": "lux"
         },
         "overrides": []
       },
@@ -2425,7 +2429,7 @@
     "list": []
   },
   "time": {
-    "from": "now-15m",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
