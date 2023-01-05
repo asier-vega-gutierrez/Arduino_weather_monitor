@@ -6,7 +6,7 @@ metadata:
 spec:
   type: LoadBalancer
   externalIPs:
-  - 10.100.0.150
+  - 10.101.0.150
   ports:
     - port: 5000
   selector:

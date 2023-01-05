@@ -32,9 +32,9 @@ def hello():
 
 @app.route("/prueba")
 def get_data():
-    response = get('https://www.google.es/').content
-    jsonResponse = json.loads(response.decode('latin-1'))#utf-8
-    return dict
+    response = get('http://10.100.0.2/')
+    print(response.text)
+    return response.text
 
 #Get Metrics
 @app.route("/metrics")
