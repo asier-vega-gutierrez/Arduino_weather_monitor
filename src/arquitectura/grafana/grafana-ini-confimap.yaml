@@ -22,7 +22,7 @@ data:
     host = smtp.gmail.com:587
     user = yosoifalso@gmail.com
     # If the password contains # or ; you have to wrap it with triple quotes. Ex """#password;"""
-    password = kquvuqgftbnrvidp
+    password = istbshvaonaiuska
     # If https enabled
     cert_file =
     key_file =
