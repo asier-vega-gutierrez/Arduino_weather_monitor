@@ -413,8 +413,10 @@ void printWeather()
     Serial.print(",");
     Serial.print(winddir);
     Serial.print(",");
-    Serial.println(pressure);
-
-
+    Serial.print(pressure);
+    Serial.print(",");
+    Serial.print(rainin);
+    Serial.print(",");
+    Serial.println(light_lvl);
 
 }
