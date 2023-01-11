@@ -132,7 +132,7 @@ void wspeedIRQ()
 void setup()
 {
     Serial.begin(9600);
-  Serial.println("LABEL,HORA,Temperatura,Humedad,Velocidad del Viento, Direccion del Viento, Presion,");
+  Serial.println("LABEL,HORA,Temperatura,Humedad,Velocidad del Viento, Direccion del Viento, Presion, Lluvia, Luz");
 
     pinMode(STAT1, OUTPUT); //Status LED Blue
     pinMode(STAT2, OUTPUT); //Status LED Green
@@ -217,7 +217,7 @@ void loop()
         digitalWrite(STAT1, LOW); //Turn off stat LED
     }
 
-  delay(60000);
+  delay(6000);
 }
 
 //Calculates each of the variables that wunderground is expecting
@@ -292,6 +292,8 @@ void calcWeather()
     //Serial.print(tempf, 2);
 
     temperatura = myHumidity.getTemp();
+
+    light_lvl = get_light_level();
 
 
     //Total rainfall for the day is calculated within the interrupt
