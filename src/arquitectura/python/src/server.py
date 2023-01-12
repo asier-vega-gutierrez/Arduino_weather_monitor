@@ -1,7 +1,5 @@
 from flask import Response, Flask
-import requests
 from requests import get
-import json
 import prometheus_client
 from prometheus_client.core import CollectorRegistry
 from prometheus_client import Summary, Counter, Histogram, Gauge
@@ -16,7 +14,8 @@ import random
 
 #Variables
 app = Flask(__name__)
-urls = ["http://10.100.0.2/","http://10.100.0.3/"]
+#definir el numero de rutas a las que se quiera ir a recojer los valores
+urls = ["http://192.168.1.104:5000/"]
 indice = [1,2]
 respuestas = []
 #Metricas
@@ -37,60 +36,52 @@ def hello():
     return "Hello World!" 
 
 #Prueba de conexion a un url externa
-#@app.route("/prueba")
-#def get_data():
-#    response = get('http://10.100.0.2/')
-#    print(response.text)
-#    return response.text
+@app.route("/prueba")
+def get_data():
+    response = get('http://10.100.0.2/')
+    print(response.text)
+    return response.text
 
 #El htlm que recoja tiene este formato:
-##<html><body>1_10.5_885_0_0_0_0_0</body></html>
+##<html><body>1,10.5,885,0,0,0,0,0</body></html>
 #Esto se traduce a:
-##<html><body>id(1 o 2)_temperatura_presion_humedad_velocidadviento_direccionviento_lluvia_luz</body></html>
+##<html><body>id_temperatura_presion_humedad_velocidadviento_direccionviento_lluvia_luz</body></html>
 
 #Paguina a la que 
 @app.route("/metrics")
 def requests():
     while True:
-        #Recojemos datos cada 5 segundos
-        #time.sleep(5)
         #Por cada estacion una url 
-        #for url in urls:
-            #response = str(get(url).content)
-            #Preparamos los datos para poder usarlos
-            #datos=response.split(sep="_")
-            #datos[0] = datos[0][2:]
-            #datos[7] = datos[7][:-1]
-            #respuestas.append(datos)
+        for url in urls:
+            response = get(url)
+            datos=str(response.content).split(sep=",") 
+            datos[0] = datos[0][2:]
+            datos[7] = datos[7][:-1]
+            respuestas.append(datos)
         #las distintas respuestas genera distintas metricas en funciond de datos[0] que es el id de la estacion
-        #for datos in respuestas:
-            #graphs['temp_'+str(datos[0])].set(datos[1])
-            #graphs['press_'+str(datos[0])].set(datos[2])
-            #graphs['hum_'+str(datos[0])].set(datos[3])
-            #graphs['w_speed_'+str(datos[0])].set(datos[4])
-            #graphs['w_dir_'+str(datos[0])].set(datos[5])
-            #graphs['rain_'+str(datos[0])].set(datos[6])
-            #graphs['light_'+str(datos[0])].set(datos[7])
-        #Cargamos los datos al cleinte de prometheus
-        for n in indice:
-            graphs['temp_'+str(n)].set(random.randint(46, 50))
-            graphs['press_'+str(n)].set(random.randint(885, 1077))
-            graphs['hum_'+str(n)].set(random.randint(0,100))
-            graphs['w_speed_'+str(n)].set(random.randint(0, 40))
-            graphs['w_dir_'+str(n)].set(random.randint(0,360))
-            graphs['rain_'+str(n)].set(random.randint(0, 3))
-            graphs['light_'+str(n)].set(random.randint(0,100))
-        res = []
-        for k,v in graphs.items():
-            res.append(prometheus_client.generate_latest(v))
-        return Response(res, mimetype="text/plain")
+        for datos in respuestas:
+        #    graphs['temp_'+str(datos[0])].set(datos[1])
+            graphs['press_'+str(datos[0])].set(datos[2])
+            graphs['hum_'+str(datos[0])].set(datos[3])
+            graphs['w_speed_'+str(datos[0])].set(datos[4])
+            graphs['w_dir_'+str(datos[0])].set(datos[5])
+            graphs['rain_'+str(datos[0])].set(datos[6])
+            graphs['light_'+str(datos[0])].set(datos[7])
 
-        #Codigo de pruba usando random
-        #for n in indice:
-        #    graphs['temp_'+str(n)].set(random.randint(10, 45))
+        #Codigo para forzar variables por separado
+        #---
+        for n in indice:
+            graphs['temp_'+str(datos[0])].set(random.randint(46, 50))
         #    graphs['press_'+str(n)].set(random.randint(885, 1077))
         #    graphs['hum_'+str(n)].set(random.randint(0,100))
         #    graphs['w_speed_'+str(n)].set(random.randint(0, 40))
         #    graphs['w_dir_'+str(n)].set(random.randint(0,360))
         #    graphs['rain_'+str(n)].set(random.randint(0, 3))
         #    graphs['light_'+str(n)].set(random.randint(0,100))
+        #---
+        
+        #Cargamos los datos al cleinte de prometheus
+        res = []
+        for k,v in graphs.items():
+            res.append(prometheus_client.generate_latest(v))
+        return Response(res, mimetype="text/plain")

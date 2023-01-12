@@ -4,18 +4,25 @@
  SparkFun Electronics
  Date: November 16th, 2013
  License: This code is public domain but you buy me a beer if you use this and we meet someday (Beerware license).
+
  Much of this is based on Mike Grusin's USB Weather Board code: https://www.sparkfun.com/products/10586
+
  This is a more advanced example of how to utilize every aspect of the weather shield. See the basic
  example if you're just getting started.
+
  This code reads all the various sensors (wind speed, direction, rain gauge, humidity, pressure, light, batt_lvl)
  and reports it over the serial comm port. This can be easily routed to a datalogger (such as OpenLog) or
  a wireless transmitter (such as Electric Imp).
+
  Measurements are reported once a second but windspeed and rain gauge are tied to interrupts that are
  calculated at each report.
+
  This example code assumes the GPS module is not used.
+
   Updated by Joel Bartlett
   03/02/2017
   Removed HTU21D code and replaced with Si7021
+
  */
 
 #include <Wire.h> //I2C needed for sensors
@@ -125,7 +132,7 @@ void wspeedIRQ()
 void setup()
 {
     Serial.begin(9600);
-  Serial.println("LABEL,HORA,Temperatura,Humedad,Velocidad del Viento, Direccion del Viento, Presion, Lluvia, Luz");
+  Serial.println("LABEL,HORA,Temperatura,Humedad,Velocidad del Viento, Direccion del Viento, Presion,");
 
     pinMode(STAT1, OUTPUT); //Status LED Blue
     pinMode(STAT2, OUTPUT); //Status LED Green
@@ -210,7 +217,7 @@ void loop()
         digitalWrite(STAT1, LOW); //Turn off stat LED
     }
 
-  //delay(1000);
+  delay(60000);
 }
 
 //Calculates each of the variables that wunderground is expecting
@@ -285,8 +292,6 @@ void calcWeather()
     //Serial.print(tempf, 2);
 
     temperatura = myHumidity.getTemp();
-
-    light_lvl = get_light_level();
 
 
     //Total rainfall for the day is calculated within the interrupt
@@ -408,10 +413,8 @@ void printWeather()
     Serial.print(",");
     Serial.print(winddir);
     Serial.print(",");
-    Serial.print(pressure);
-    Serial.print(",");
-    Serial.print(rainin);
-    Serial.print(",");
-    Serial.println(light_lvl);
+    Serial.println(pressure);
+
+
 
 }
