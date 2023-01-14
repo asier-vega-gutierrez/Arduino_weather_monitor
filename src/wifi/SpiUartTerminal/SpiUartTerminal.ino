@@ -1,34 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@AiserVG 
-sparkfun
-/
-WiFly-Shield
-Public
-Fork your own copy of sparkfun/WiFly-Shield
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-WiFly-Shield/Libraries/Arduino/examples/SpiUartTerminal/SpiUartTerminal.ino
-@SFE-Chris
-SFE-Chris Merge commit '7df72ea6eeefff633b5fc3e5f3059c2bbbb89507' as 'Libraries…
-…
-Latest commit d02d336 on Apr 24, 2015
- History
- 1 contributor
-63 lines (47 sloc)  1.68 KB
-
 /*
   SpiUartTerminal - tool to help troubleshoot problems with WiFly shield
   This code will initialise and test the SC16IS750 UART-SPI bridge then enable you
@@ -88,18 +57,3 @@ void loop() {
 #endif
   }
 }
-Footer
-© 2023 GitHub, Inc.
-Footer navigation
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-WiFly-Shield/SpiUartTerminal.ino at master · sparkfun/WiFly-Shield
