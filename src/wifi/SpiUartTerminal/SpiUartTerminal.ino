@@ -125,7 +125,7 @@ void wspeedIRQ()
 void setup()
 {
     Serial.begin(9600);
-  Serial.println("LABEL,HORA,Temperatura,Humedad,Velocidad del Viento, Direccion del Viento, Presion, Lluvia, Luz");
+  //Serial.println("LABEL,HORA,Temperatura,Humedad,Velocidad del Viento, Direccion del Viento, Presion, Lluvia, Luz");
 
     pinMode(STAT1, OUTPUT); //Status LED Blue
     pinMode(STAT2, OUTPUT); //Status LED Green
@@ -399,7 +399,9 @@ int get_wind_direction()
 void printWeather()
 {
     calcWeather(); //Go calc all the various sensors
-    Serial.print("DATA,TIME,");
+    //Serial.print("DATA,TIME,");
+    Serial.print("1");
+    Serial.print(",");
     Serial.print(temperatura);
     Serial.print(",");
     Serial.print(humidity);

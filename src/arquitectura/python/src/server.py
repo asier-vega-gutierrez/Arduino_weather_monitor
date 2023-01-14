@@ -15,7 +15,7 @@ import random
 #Variables
 app = Flask(__name__)
 #definir el numero de rutas a las que se quiera ir a recojer los valores
-urls = ["http://192.168.1.104:5000/"]
+urls = ["http://172.20.10.3:5000/"]
 indice = [1,2]
 respuestas = []
 #Metricas
@@ -56,15 +56,15 @@ def requests():
             response = get(url)
             datos=str(response.content).split(sep=",") 
             datos[0] = datos[0][2:]
-            datos[7] = datos[7][:-1]
+            datos[7] = datos[7][:-5]
             respuestas.append(datos)
         #las distintas respuestas genera distintas metricas en funciond de datos[0] que es el id de la estacion
         for datos in respuestas:
         #    graphs['temp_'+str(datos[0])].set(datos[1])
-            graphs['press_'+str(datos[0])].set(datos[2])
-            graphs['hum_'+str(datos[0])].set(datos[3])
-            graphs['w_speed_'+str(datos[0])].set(datos[4])
-            graphs['w_dir_'+str(datos[0])].set(datos[5])
+            graphs['press_'+str(datos[0])].set(datos[5])
+            graphs['hum_'+str(datos[0])].set(datos[2])
+            graphs['w_speed_'+str(datos[0])].set(datos[3])
+            graphs['w_dir_'+str(datos[0])].set(datos[4])
             graphs['rain_'+str(datos[0])].set(datos[6])
             graphs['light_'+str(datos[0])].set(datos[7])
 
