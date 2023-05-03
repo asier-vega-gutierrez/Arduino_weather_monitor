@@ -1,7 +1,7 @@
 Pasos para montar todo:
 
     
-    Ejecutar servidro web y aplicacion de percepcion en arduino: 
+    Ejecutar servidor web y aplicacion de percepcion en Arduino: 
 
     0. Connectar arduino a ordenador
 
@@ -22,7 +22,7 @@ Pasos para montar todo:
     8. Acceda via navegar a la ip que este codigo devulva desde el monitor serie
 
     
-    Montar arquitectura CNF en minikube:
+    Montar arquitectura CNF en Minikube:
 
     0. Iniciar minikube "minikube start"
     
@@ -40,5 +40,5 @@ Pasos para montar todo:
     
     7. Ejecutar "kubectl apply -f python/ -n monitoring"
     
-    8. En otra terminal ejecutart "minikube tunnel"
+    8. En otra terminal ejecutar "minikube tunnel"
 
